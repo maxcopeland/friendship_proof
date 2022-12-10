@@ -6,7 +6,6 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
-% \newtheorem{observation}[theorem]{Observation}
 \newtheorem{observation}[theorem]{Observation}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{exercise}{Exercise}
@@ -32,13 +31,13 @@ A \textbf{friendship graph} $F_n$ is a planar, undirected graph with $2_n + 1$ v
 
 \begin{theorem}[Friendship Theorem]
 \label{theorem:friendship}
-Let $G$ be a finite graph such that every pair of vertices have exactly one common neighbor. Then $G$ has a vertex adjacent to every other vertex, (a universal vertex).
+Let $G$ be a finite graph such that every pair of vertices have exactly one common neighbor. Then $G$ has as universal vertex, i.e., a vertex adjacent to every other vertex.
 \end{theorem}
 
 
 \begin{proof}
 \label{proof:friendship_theorem}
-Suppose to the contrary that each pair of vertices in $G$ has a common neighbor but no universal vertex. Following from the common neighbor property as stated in \ref{theorem:friendship}, we observe the following:
+Suppose to the contrary that each pair of vertices in $G$ has exactly one common neighbor but no universal vertex. Following from the common neighbor property as stated in \ref{theorem:friendship}, we observe the following:
 
 \begin{observation}
 $G$ has no 4-cycles, as any pair of vertices on a $C_4$ would have two common neighbors. 
@@ -51,7 +50,7 @@ From this observation we make the following claim:
 $G$ is a regular graph.
 \end{claim}
 
-Begin with non-adjacent vertices $u, v \in G$ via no universal vertex. There must be exactly one common vertex between $u$ and $v$, i.e. this common vertex must be contained in $N(u) = \{w_1, w_2, ... , w_k\}$. Say WLOG this common vertex is $w_2$. There must also be exactly one common vertex between $u$ and $w_2$. Say WLOG this common vertex is $w_1$. We take notice of the following:
+Begin with non-adjacent vertices $u, v \in G$ via no universal vertex. There must be exactly one common vertex between $u$ and $v$, i.e., this common vertex must be contained in $N(u) = \{w_1, w_2, \dots , w_k\}$. Say without loss of generality this common vertex is $w_2$. There must also be exactly one common vertex between $u$ and $w_2$. Say without loss of generality this common vertex is $w_1$. We take notice of the following:
 
 \begin{enumerate}
     \item $v$ is not adjacent to any $w_i$ (where $i \neq 2$)
@@ -59,34 +58,25 @@ Begin with non-adjacent vertices $u, v \in G$ via no universal vertex. There mus
     \item $v, w_i$ have a common neighbor (where $ i \geq 2$)
 \end{enumerate}
 
-From these observations we conclude $d(u) \geq d(u)$. We can symmetrically argue $d(v) \geq d(u)$. Combining both conclusions we have $d(u) = d(v) = k$. From here we make the following observation:
+From these observations we conclude $d(u) \geq d(u)$. We can argue similarly that $d(v) \geq d(u)$. Combining both conclusions we have $d(u) = d(v) = k$. From here we make the following observation:
 
 \begin{observation}
 \label{obs:adjacency}
 Every vertex $x$ (except $w_2$) is \textbf{not} adjacent to $u$ or $v$. Hence, $d(x) = k$.
 \end{observation}  
 
-Since $w_2$ is not universal (as stated in the aim of the proof), there is some vertex $y$ to which $w_2$ is not adjacent. But from our observation \ref{obs:adjacency}, $d(y) = k$. Thus, $d(w_2) = k$, which proves the claim \ref{claim:regularity}. 
+Since $w_2$ is not universal (as stated in the aim of the proof), there is some vertex $y$ to which $w_2$ is not adjacent. But from our observation \ref{obs:adjacency}, $d(y) = k$. Thus, $d(w_2) = k$, which proves Claim \ref{claim:regularity}. 
 
 \bigskip
 
-The regularity of $G$ allows the conclusion that the sum of degrees for 
-$w_1, w_2, ..., w_k = k^2$. Notice that this sum counts every vertex of $G$, as every vertex in $G$ has a common neighbor with $u$, so this common neighbor must exist as $w_i$ (and is not repeated). Further, $u$ is counted $k$ times for each of its $k$ edges. Thus we can deduce $|V(G)| = n = k^2 - k + 1$.
+The regularity of $G$ allows the conclusion $\sum_1^kd(w_i)=k^2$. Notice that this sum counts every vertex of $G$, as every vertex in $G$ has a common neighbor with $u$, so this common neighbor must exist as $w_i$ (and is not repeated). Further, $u$ is counted $k$ times for each of its $k$ edges. Thus we can deduce $|V(G)| = n = k^2 - k + 1$.
 
 We can then make the following observation: 
 \begin{observation}
 \label{obs:kgr2}
-We know $k > 2$, as
-\[
-k = 1 \rightarrow n = 1
-\]
-\[
-k = 2 \rightarrow n = 3
-\]
+If $k=1$, then $n=1$. If $k=2$, then $n=3$.  Thus, $k > 2$.
 
 \end{observation}  
-
-\bigskip
 
 Let us consider the adjacency matrix $A$ of $G$ and its square, $A^2$
 
@@ -97,13 +87,13 @@ $A = $
         0         & a_{01}      & \dots     & a_{0j}       \\
         a_{10}    & 0           & \dots     & \dots        \\
         \vdots    & \vdots      & \ddots    & \dots        \\
-        a_{i0}    & \hdots      & \hdots    & 0.           \\
+        a_{i0}    & \hdots      & \hdots    & 0           \\
     \end{bmatrix}$
 \[
     a_{ij}= 
 \begin{cases}
-    1, & \text{if } $ v_i v_j$ is an edge \\
-    0,              & \text{otherwise}
+    1 & \text{if } v_i v_j  \text{ is an edge} \\
+    0              & \text{otherwise}
 \end{cases}
 \]
 \end{figure}
@@ -128,15 +118,15 @@ $A^2 = $
 \[
     a^2_{ij}= 
 \begin{cases}
-    k, & \text{if } $$v_i = v_j$$ \\
-    1,              & \text{otherwise}
+    k & \text{if } $$v_i = v_j$$ \\
+    1              & \text{otherwise}
 \end{cases}
 \]
 \end{figure}
 
 When $v_i \neq v_j$ we know each $v_iv_j$ pair has exactly one walk of length 2. And when $v_i = v_j$, the number of walks is simply the degree of the vertex, as a length-two walk simply travels along one out-edge return on the same edge for each of its $k$ out-edges.
 
-Written another way, $A^2 = J + (k - 1)I$, where $J$ is the ones-matrix and $I$ is the identity matrix. 
+Written another way, $A^2 = J + (k - 1)I$, where $J$ is the all-ones matrix and $I$ is the identity matrix. 
 Computing the eigenvalues of $A^2$ gives:
 
 
@@ -184,7 +174,7 @@ We unpack the $\pm \sqrt{k-1}$ and restate the values and multiplicities the fol
             \
             \sqrt{k^2} = k \tikzmark{lineOnec} \\
             + \sqrt{k - 1} \tikzmark{lineTwoc}\\
-            \dots \\
+            \vdots \\
             - \sqrt{k - 1} \tikzmark{lineThreec}\\
             \vdots \\
         \end{array}
@@ -201,17 +191,16 @@ We unpack the $\pm \sqrt{k-1}$ and restate the values and multiplicities the fol
 Summing the eigenvalues of $A$ gives $k + r\sqrt{k - 1} - s\sqrt{k -1}$. This value is equivalent to summing the diagonal of $A$, which is a property of eigenvalues we can now exploit. Recall $A$'s diagonal is all 0's, which gives:
 
 \[ 
-k + r\sqrt{k - 1} - s\sqrt{k -1} = 0
+k + r\sqrt{k - 1} - s\sqrt{k -1} = 0\text{.}
 \]
 
 Refactoring above and multiplying $k$ throughout results in the following:
 
 \[
-(r - s)(k - 1) = k^2
+(r - s)(k - 1) = k^2\text{.}
 \]
 
-This implies that $(k - 1)$ divides $k^2$, which only happens if $k \leq 2$ which contradicts observation \ref{obs:kgr2}.
-
+This implies that $(k - 1)$ divides $k^2$, which only happens if $k \leq 2$ which contradicts Observation \ref{obs:kgr2}.
 \end{proof}
 
 \end{document}
